@@ -6,12 +6,7 @@ const Meals = (props) => {
     return (
         <Fragment>
             <MealsSummary />
-            <AvailableMeals
-                meals={props.meals}
-                error={props.error}
-                isLoading={props.isLoading}
-                onFetch={props.onFetch}
-            />
+            <AvailableMeals />
         </Fragment>
     );
 };
