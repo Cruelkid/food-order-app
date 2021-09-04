@@ -27,7 +27,12 @@ const AvailableMeals = (props) => {
     let content = mealsList;
 
     if (mealsCtx.error) {
-        content = <button onClick={mealsCtx.onFetch}>Try again</button>;
+        content = (
+            <div>
+                <p>Something went wrong :(</p>
+                <button onClick={mealsCtx.onFetch}>Try again</button>
+            </div>
+        );
     }
 
     if (mealsCtx.isLoading) {
