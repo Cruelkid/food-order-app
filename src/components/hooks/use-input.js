@@ -38,7 +38,6 @@ const useInput = (validateValue) => {
     const hasError = inputState.isTouched && !valueIsValid;
 
     const valueChangeHandler = (e) => {
-        console.log(e.target.id);
         dispatcher({
             type: 'VALUE_CHANGE',
             value: e.target.value,

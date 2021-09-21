@@ -57,7 +57,7 @@ const formReducer = (state, action) => {
 const useForm = () => {
     const [inputState, dispatcher] = useReducer(formReducer, initialState);
     const isEmpty = (value) => value.trim() === '';
-    const isFiveCharsLong = (value) => value.trim().length > 5;
+    const isFiveCharsLong = (value) => value.trim().length >= 5;
 
     const valueChangeHandler = (e) => {
         dispatcher({
@@ -91,6 +91,17 @@ const useForm = () => {
         city: inputState.isTouched.city && !valueIsValid('city'),
     };
 
+    const formIsValid = () => {
+        // eslint-disable-next-line no-unused-vars
+        for (const [key, value] of Object.entries(hasErrors)) {
+            if (value) {
+                return false;
+            }
+        }
+
+        return true;
+    };
+
     const reset = () => {
         dispatcher({
             type: 'VALUE_RESET',
@@ -104,6 +115,7 @@ const useForm = () => {
         postalCode: inputState.values.postalCode,
         city: inputState.values.city,
         hasErrors,
+        formIsValid,
         valueChangeHandler,
         blurChangeHandler,
         reset,

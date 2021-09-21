@@ -20,10 +20,23 @@ const Checkout = (props) => {
         valueChangeHandler: inputChangeHandler,
         blurChangeHandler: inputBlurHandler,
         reset: resetFormValues,
+        formIsValid
     } = useForm();
 
     const submitHandler = (e) => {
         e.preventDefault();
+
+        if (!formIsValid) {
+            return;
+        }
+
+        props.onConfirm({
+            firstName: enteredFirstName,
+            lastName: enteredLastName,
+            street: enteredStreet,
+            postalCode: enteredPostalCode,
+            city: enteredCity
+        });
 
         resetFormValues();
     };
